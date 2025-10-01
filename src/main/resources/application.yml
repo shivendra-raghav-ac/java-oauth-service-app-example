@@ -1,0 +1,28 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+app:
+  okta:
+    domain: ${OKTA_DOMAIN}
+    tokenPath: ${OKTA_OAUTH_TOKEN_PATH:/oauth2/v1/token}
+    apiBase: ${OKTA_API_BASE:/api/v1}
+    clientId: ${OKTA_CLIENT_ID}
+    scope: ${OKTA_SCOPE:okta.users.read}
+    jwt:
+      audience: ${OKTA_JWT_AUDIENCE}
+      kid: ${OKTA_JWT_KID}
+      pemPath: ${OKTA_JWT_PEM_PATH:secrets/private_key.pem}
+
+http:
+  connectTimeoutMs: ${HTTP_CONNECT_TIMEOUT_MS:3000}
+  readTimeoutMs: ${HTTP_READ_TIMEOUT_MS:5000}
+
+security:
+  apiKey:
+    enabled: ${API_KEY_ENABLED:false}
+    value: ${API_KEY_VALUE:change-me}
+logging:
+  level:
+    root: INFO
+    com.example.oktausersvc: DEBUG
+    org.springframework.web.reactive.function.client: DEBUG
